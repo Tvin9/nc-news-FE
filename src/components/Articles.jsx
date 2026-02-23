@@ -13,13 +13,22 @@ export function Articles() {
 		}
 		fetchArticles();
 	}, []);
+
 	if (!articles) {
 		return <div>Loading...</div>;
 	}
-	console.log(articles);
+
 	return (
-		<>
-			<ul>Articles here</ul>
-		</>
+		<ul>
+			{articles.articles.map((article) => {
+				return (
+					<li key={article.article_id}>
+						<h2>{article.title}</h2>
+						<p>Votes: {article.votes}</p>
+						<p>Comments: {article.comment_count}</p>
+					</li>
+				);
+			})}
+		</ul>
 	);
 }
