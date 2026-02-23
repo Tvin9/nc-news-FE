@@ -19,11 +19,11 @@ export function Articles() {
 	}
 
 	return (
-		<ul>
+		<ul id="article_list">
 			{articles.articles.map((article) => {
 				return (
 					<li key={article.article_id}>
-						<h2>{article.title}</h2>
+						<h3>{article.title}</h3>
 						<p>Votes: {article.votes}</p>
 						<p>Comments: {article.comment_count}</p>
 					</li>

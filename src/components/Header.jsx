@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 export function Header() {
 	return (
 		<Box>
-			NC News
+			<h1>NC News</h1>
 			<NavBar />
 		</Box>
 	);
