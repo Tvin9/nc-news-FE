@@ -1,7 +1,10 @@
+import { color } from '@mui/system';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router';
 
 export function Articles() {
 	const [articles, setArticles] = useState(null);
+	const [activeId, setActiveId] = useState(null);
 
 	useEffect(() => {
 		async function fetchArticles() {
@@ -16,6 +19,7 @@ export function Articles() {
 
 	if (!articles) {
 		return <div>Loading...</div>;
+		//skeleton loader in here?
 	}
 
 	return (
@@ -23,9 +27,36 @@ export function Articles() {
 			{articles.articles.map((article) => {
 				return (
 					<li key={article.article_id}>
-						<h3>{article.title}</h3>
-						<p>Votes: {article.votes}</p>
-						<p>Comments: {article.comment_count}</p>
+						<Link
+							to={`/articles/${article.article_id}`}
+							className="article_link"
+						>
+							<div
+								onMouseEnter={() => {
+									setActiveId(article.article_id);
+								}}
+								onMouseLeave={() => {
+									setActiveId(null);
+								}}
+							>
+								<img
+									src={article.article_img_url}
+									alt="News image"
+									className="news_image"
+								/>
+								<h3
+									style={{
+										color: activeId === article.article_id ? 'blue' : 'black',
+										textDecoration:
+											activeId === article.article_id ? 'underline' : 'none',
+									}}
+								>
+									{article.title}
+								</h3>
+								<p>Votes: {article.votes}</p>
+								<p>Comments: {article.comment_count}</p>
+							</div>
+						</Link>
 					</li>
 				);
 			})}
