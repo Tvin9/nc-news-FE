@@ -1,4 +1,5 @@
-import { color } from '@mui/system';
+import { FaRegThumbsUp } from 'react-icons/fa';
+import { BiCommentDetail } from 'react-icons/bi';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 
@@ -26,7 +27,7 @@ export function Articles() {
 		<ul id="article_list">
 			{articles.articles.map((article) => {
 				return (
-					<li key={article.article_id}>
+					<li key={article.article_id} className="article_item">
 						<Link
 							to={`/articles/${article.article_id}`}
 							className="article_link"
@@ -53,8 +54,18 @@ export function Articles() {
 								>
 									{article.title}
 								</h3>
-								<p>Votes: {article.votes}</p>
-								<p>Comments: {article.comment_count}</p>
+							</div>
+							<div>
+								<ul className="articles_votes_comments">
+									<li>
+										<FaRegThumbsUp className="thumb_up" />
+										{article.votes}
+									</li>
+									<li>
+										<BiCommentDetail className="comment_icon" />
+										{article.comment_count}
+									</li>
+								</ul>
 							</div>
 						</Link>
 					</li>

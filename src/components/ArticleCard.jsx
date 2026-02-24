@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Header } from './Header';
+import { CommentCard } from './CommentCard';
 
 export function ArticleCard() {
 	const [article, setArticle] = useState(null);
@@ -12,7 +13,7 @@ export function ArticleCard() {
 				`https://nc-news-yyic.onrender.com/api/articles/${article_id}`,
 			);
 			const body = await response.json();
-			setArticle(body.article.article);
+			setArticle(body.article);
 		}
 		fetchArticle();
 	}, []);
@@ -28,23 +29,26 @@ export function ArticleCard() {
 
 			{article.map((a) => {
 				return (
-					<div>
-						<img
-							key={`pic + ${a.article_id}`}
-							src={a.article_img_url}
-							alt="article picture"
-						/>
-						<h2>{a.title}</h2>
-						<ul className="article_info">
-							<li>{a.author}</li>
-							<li>{a.created_at}</li>
-						</ul>
-						<ul>
-							<li>{a.votes}</li>
-							<li>{a.comments}</li>
-						</ul>
-						<p key={`body + ${a.article_id}`}>{a.body}</p>;
-					</div>
+					<main key={`article + ${a.article_id}`}>
+						<div>
+							<img
+								className="article_image"
+								src={a.article_img_url}
+								alt="article picture"
+							/>
+							<h2>{a.title}</h2>
+							<ul className="article_info">
+								<li>{a.author}</li>
+								<li>{new Date(a.created_at).toLocaleDateString()}</li>
+							</ul>
+							<ul className="article_counters">
+								<li>Votes: {a.votes}</li>
+								<li>Comments: {a.comment_count}</li>
+							</ul>
+							<p>{a.body}</p>
+						</div>
+						<CommentCard article_id={a.article_id} />
+					</main>
 				);
 			})}
 		</>
