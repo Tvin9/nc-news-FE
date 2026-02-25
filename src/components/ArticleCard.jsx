@@ -23,7 +23,7 @@ export function ArticleCard() {
 			setArticle(body.article);
 		}
 		fetchArticle();
-	}, []);
+	}, [article_id]);
 
 	if (!article) {
 		return <div>Loading...</div>;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { FaRegThumbsUp } from 'react-icons/fa';
+import { AddComment } from './AddComment';
 
 export function CommentCard() {
 	const [comments, setComments] = useState(null);
@@ -15,7 +16,7 @@ export function CommentCard() {
 			setComments(body.comments);
 		}
 		fetchComments();
-	}, []);
+	}, [article_id]);
 
 	const handleClick = function () {
 		!showComments ? setShowComments(true) : setShowComments(false);
@@ -29,6 +30,8 @@ export function CommentCard() {
 			{showComments && (
 				<main className="comments">
 					<h2>Comments</h2>
+
+					<AddComment article_id={article_id} setComments={setComments} />
 
 					{!comments ? (
 						<div>Loading...</div>
