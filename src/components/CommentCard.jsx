@@ -37,7 +37,9 @@ export function CommentCard() {
 							return (
 								<div className="comment_card" key={comment.comment_id}>
 									<p>{comment.author}</p>
-									<p>{new Date(comment.created_at).toLocaleDateString()}</p>
+									<p>
+										{new Date(comment.created_at).toLocaleDateString('en-GB')}
+									</p>
 									<p>{comment.body}</p>
 									<p>
 										<button className="vote_button">

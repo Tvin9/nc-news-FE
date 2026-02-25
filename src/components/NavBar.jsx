@@ -1,11 +1,15 @@
-import { Box, display, flexDirection } from '@mui/system';
+import { color } from '@mui/system';
+import { Link } from 'react-router';
 
 export function NavBar() {
 	return (
 		<ul id="nav_bar">
-			<li>
-				<h3>Articles</h3>
-			</li>
+			<Link to={'/'} style={{ textDecoration: 'none', color: 'white' }}>
+				<li className="article_link">
+					<h3>Articles</h3>
+				</li>
+			</Link>
+
 			<li>
 				<h3>Topics</h3>
 			</li>

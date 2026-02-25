@@ -1,4 +1,4 @@
-import { FaRegThumbsUp } from 'react-icons/fa';
+import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
 import { BiCommentDetail } from 'react-icons/bi';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
@@ -58,7 +58,11 @@ export function Articles() {
 							<div>
 								<ul className="articles_votes_comments">
 									<li>
-										<FaRegThumbsUp className="thumb_up" />
+										{article.votes < 0 ? (
+											<FaRegThumbsDown className="thumb" />
+										) : (
+											<FaRegThumbsUp className="thumb" />
+										)}
 										{article.votes}
 									</li>
 									<li>

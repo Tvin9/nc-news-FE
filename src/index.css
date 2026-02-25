@@ -4,6 +4,8 @@ body {
 }
 
 .Header {
+	display: flex;
+	justify-content: space-between;
 	background-color: white;
 	padding: 20px;
 	margin: 0px;
@@ -37,12 +39,12 @@ body {
 	margin-bottom: 0px;
 }
 
-.thumb_up {
-	padding-right: 5px;
+.thumb {
+	padding-right: 7px;
 }
 
 .comment_icon {
-	padding-right: 5px;
+	padding-right: 7px;
 }
 
 #nav_bar {
@@ -98,6 +100,8 @@ body {
 
 .show_comments:hover {
 	cursor: pointer;
+	background-color: white;
+	color: black;
 }
 
 .comment_card {
@@ -116,4 +120,8 @@ body {
 
 .vote_button:hover {
 	cursor: pointer;
+}
+
+.error_text {
+	color: crimson;
 }
