@@ -3,13 +3,18 @@ import { useState, useEffect } from 'react';
 export function AddComment(props) {
 	const [newComment, setNewComment] = useState('');
 	const [error, setError] = useState(null);
+	const [commenting, setCommenting] = useState(false);
 	const { article_id, setComments } = props;
 
 	const postComment = async function (e) {
 		e.preventDefault();
-		if (!newComment) return;
+		if (!newComment.trim()) {
+			setError('Comment cannot be empty');
+			return;
+		}
 
-		setError(false);
+		setCommenting(true);
+		setError(null);
 
 		try {
 			const response = await fetch(
@@ -31,17 +36,22 @@ export function AddComment(props) {
 			setNewComment('');
 		} catch (err) {
 			setError("Sorry, we couldn't post your comment");
+		} finally {
+			setCommenting(false);
 		}
 	};
-
+	console.log('commenting state:', commenting);
 	return (
 		<form onSubmit={postComment} className="add_comment_form">
 			<textarea
 				value={newComment}
 				onChange={(e) => setNewComment(e.target.value)}
 				placeholder="Write your comment..."
+				required
 			/>
-			<button type="submit">Add Comment</button>
+			<button type="submit" disabled={commenting}>
+				{commenting ? '...' : 'Add comment'}
+			</button>
 			{error && <p className="error_text">{error}</p>}
 		</form>
 	);

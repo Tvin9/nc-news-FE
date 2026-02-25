@@ -7,6 +7,7 @@ export function CommentCard() {
 	const [comments, setComments] = useState(null);
 	const [showComments, setShowComments] = useState(false);
 	const { article_id } = useParams();
+
 	useEffect(() => {
 		async function fetchComments() {
 			const response = await fetch(
