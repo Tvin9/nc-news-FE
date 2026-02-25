@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import { FaRegThumbsUp } from 'react-icons/fa';
 
 export function CommentCard() {
 	const [comments, setComments] = useState(null);
+	const [showComments, setShowComments] = useState(false);
 	const { article_id } = useParams();
 	useEffect(() => {
 		async function fetchComments() {
@@ -15,27 +17,41 @@ export function CommentCard() {
 		fetchComments();
 	}, []);
 
-	if (!comments) {
-		return <div>Loading...</div>;
-		//skeleton loader in here?
-	}
+	const handleClick = function () {
+		!showComments ? setShowComments(true) : setShowComments(false);
+	};
 
 	return (
-		<main className="comments">
-			<h2>Comments</h2>
-			{comments.map((comment, i) => {
-				return (
-					<div
-						className="comment_card"
-						key={`comment + ${i} ${comment.article_id}`}
-					>
-						<p>{comment.author}</p>
-						<p>{new Date(comment.created_at).toLocaleDateString()}</p>
-						<p>{comment.body}</p>
-						<p>{comment.votes}</p>
-					</div>
-				);
-			})}
-		</main>
+		<>
+			<button className="show_comments" onClick={handleClick}>
+				{!showComments ? 'Show Comments' : 'Hide Comments'}
+			</button>
+			{showComments && (
+				<main className="comments">
+					<h2>Comments</h2>
+
+					{!comments ? (
+						<div>Loading...</div>
+					) : (
+						comments.map((comment) => {
+							return (
+								<div className="comment_card" key={comment.comment_id}>
+									<p>{comment.author}</p>
+									<p>{new Date(comment.created_at).toLocaleDateString()}</p>
+									<p>{comment.body}</p>
+									<p>
+										<button className="vote_button">
+											<FaRegThumbsUp className="active_thumb" />
+										</button>
+
+										{comment.votes}
+									</p>
+								</div>
+							);
+						})
+					)}
+				</main>
+			)}
+		</>
 	);
 }
