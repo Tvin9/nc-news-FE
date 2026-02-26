@@ -27,16 +27,15 @@ export function Articles() {
 		<ul className="generic_list">
 			{articles.articles.map((article) => {
 				return (
-					<li key={article.article_id} className="item">
+					<li
+						key={article.article_id}
+						className="item"
+						onMouseOver={() => {
+							setActiveId(article.article_id);
+						}}
+					>
 						<Link to={`/articles/${article.article_id}`} className="link">
-							<div
-								onMouseEnter={() => {
-									setActiveId(article.article_id);
-								}}
-								onMouseLeave={() => {
-									setActiveId(null);
-								}}
-							>
+							<div>
 								<img
 									src={article.article_img_url}
 									alt="News image"

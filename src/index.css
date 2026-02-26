@@ -12,7 +12,12 @@
 .article_body {
 	padding-left: 20px;
 	padding-right: 20px;
+	padding-bottom: 20px;
 	margin-bottom: 40px;
+}
+
+.article_card {
+	background-color: white;
 }
 
 .article_counters {
@@ -32,6 +37,11 @@
 	justify-content: space-between;
 	list-style-type: none;
 	margin-right: 40px;
+}
+
+.article_item {
+	background-color: white;
+	padding-bottom: 20px;
 }
 
 .item {

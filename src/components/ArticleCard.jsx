@@ -61,7 +61,7 @@ export function ArticleCard() {
 			{article.map((a) => {
 				return (
 					<main key={`article + ${a.article_id}`}>
-						<div className="item">
+						<div className="article_card">
 							<img
 								className="article_image"
 								src={a.article_img_url}
