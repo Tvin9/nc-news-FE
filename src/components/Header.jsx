@@ -1,8 +1,8 @@
 import Box from '@mui/system/Box';
 import { NavBar } from './NavBar';
-import { Link } from 'react-router';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';
+import { LoggedInUser } from './LoggedIn';
 
 export function Header() {
 	return (
@@ -16,6 +16,7 @@ export function Header() {
 					<a href="https://github.com/Tvin9">
 						<FaGithub />
 					</a>
+					<LoggedInUser />
 				</div>
 			</div>
 			<NavBar />

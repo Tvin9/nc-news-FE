@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Header } from './Header';
 
 export function Users() {
 	const [users, setUsers] = useState(null);
@@ -17,6 +18,7 @@ export function Users() {
 
 	return (
 		<main>
+			<Header />
 			<ul>
 				{users.users.map((user) => (
 					<li key={user.username}>
