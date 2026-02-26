@@ -40,7 +40,7 @@ export function AddComment(props) {
 			setCommenting(false);
 		}
 	};
-	console.log('commenting state:', commenting);
+
 	return (
 		<form onSubmit={postComment} className="add_comment_form">
 			<textarea
@@ -49,7 +49,7 @@ export function AddComment(props) {
 				placeholder="Write your comment..."
 				required
 			/>
-			<button type="submit" disabled={commenting}>
+			<button type="submit" disabled={commenting} className="comment_button">
 				{commenting ? '...' : 'Add comment'}
 			</button>
 			{error && <p className="error_text">{error}</p>}

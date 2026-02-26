@@ -2,6 +2,13 @@
 	padding-right: 5px;
 }
 
+.add_comment_form {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	padding-left: 20px;
+}
+
 .article_body {
 	padding-left: 20px;
 	padding-right: 20px;
@@ -27,7 +34,7 @@
 	margin-right: 40px;
 }
 
-.article_item {
+.item {
 	background-color: white;
 	margin-bottom: 15px;
 }
@@ -36,7 +43,7 @@
 	cursor: pointer;
 }
 
-#article_list {
+.generic_list {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
 	list-style-type: none;
@@ -60,14 +67,46 @@ body {
 	background-color: rgb(244, 246, 247);
 }
 
+.comment_button {
+	all: unset;
+	width: 100px;
+	background-color: rgb(65, 63, 63);
+	color: white;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.comment_button:hover {
+	background-color: white;
+	color: black;
+}
+
 .comment_card {
 	padding-left: 20px;
-	margin-right: 200px;
-	border-bottom: 2px solid rgb(191, 190, 190);
+	padding-bottom: 5px;
+	margin-right: 25%;
+	margin-left: 20px;
+
+	background-color: white;
 }
 
 .comment_icon {
 	padding-right: 7px;
+}
+
+.comment_info {
+	display: flex;
+	justify-content: space-between;
+}
+
+.delete_button {
+	all: unset;
+	padding-right: 30px;
+}
+
+.delete_button:hover {
+	color: crimson;
+	cursor: pointer;
 }
 
 .error_text {
@@ -89,6 +128,10 @@ body {
 .logged_in_user {
 	display: flex;
 	align-items: center;
+}
+
+.main_page {
+	background-color: rgb(244, 246, 247);
 }
 
 #nav_bar {

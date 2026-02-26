@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { FaRegThumbsUp } from 'react-icons/fa';
 import { AddComment } from './AddComment';
+import { useLoggedInUser } from '../hooks/useLoggedInUser';
+import { DeleteComment } from './DeleteComment';
 
 export function CommentCard() {
 	const [comments, setComments] = useState(null);
@@ -45,13 +47,20 @@ export function CommentCard() {
 										{new Date(comment.created_at).toLocaleDateString('en-GB')}
 									</p>
 									<p>{comment.body}</p>
-									<p>
-										<button className="vote_button">
-											<FaRegThumbsUp className="active_thumb" />
-										</button>
+									<div className="comment_info">
+										<p>
+											<button className="vote_button">
+												<FaRegThumbsUp className="active_thumb" />
+											</button>
 
-										{comment.votes}
-									</p>
+											{comment.votes}
+										</p>
+										<DeleteComment
+											comment_id={comment.comment_id}
+											setComments={setComments}
+											author={comment.author}
+										/>
+									</div>
 								</div>
 							);
 						})

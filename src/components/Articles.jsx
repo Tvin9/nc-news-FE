@@ -24,10 +24,10 @@ export function Articles() {
 	}
 
 	return (
-		<ul id="article_list">
+		<ul className="generic_list">
 			{articles.articles.map((article) => {
 				return (
-					<li key={article.article_id} className="article_item">
+					<li key={article.article_id} className="item">
 						<Link to={`/articles/${article.article_id}`} className="link">
 							<div
 								onMouseEnter={() => {
