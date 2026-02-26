@@ -28,10 +28,7 @@ export function Articles() {
 			{articles.articles.map((article) => {
 				return (
 					<li key={article.article_id} className="article_item">
-						<Link
-							to={`/articles/${article.article_id}`}
-							className="article_link"
-						>
+						<Link to={`/articles/${article.article_id}`} className="link">
 							<div
 								onMouseEnter={() => {
 									setActiveId(article.article_id);
