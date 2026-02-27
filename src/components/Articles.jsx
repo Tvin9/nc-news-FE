@@ -1,41 +1,46 @@
+// Articles.jsx
+import { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router';
 import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
 import { BiCommentDetail } from 'react-icons/bi';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Header } from './Header';
 
 export function Articles() {
 	const [articles, setArticles] = useState(null);
 	const [activeId, setActiveId] = useState(null);
+	const [error, setError] = useState(null);
+	const [searchParams] = useSearchParams();
+	const topic = searchParams.get('topic');
 
 	useEffect(() => {
 		async function fetchArticles() {
-			const response = await fetch(
-				'https://nc-news-yyic.onrender.com/api/articles/',
-			);
-			const body = await response.json();
-			setArticles(body);
+			try {
+				const url = topic
+					? `https://nc-news-yyic.onrender.com/api/articles/?topic=${topic}`
+					: 'https://nc-news-yyic.onrender.com/api/articles/';
+				const response = await fetch(url);
+				const body = await response.json();
+				setArticles(body);
+			} catch (err) {
+				setError(err.message);
+			}
 		}
 		fetchArticles();
-	}, []);
+	}, [topic]);
 
-	if (!articles) {
-		return <div>Loading...</div>;
-		//skeleton loader in here?
-	}
+	if (error) return <p>Error: {error}</p>;
+	if (!articles) return <div>Loading...</div>;
 
 	return (
-		<ul className="generic_list">
-			{articles.articles.map((article) => {
-				return (
+		<main className="main_page">
+			<Header />
+			<ul className="generic_list">
+				{articles.articles.map((article) => (
 					<li
 						key={article.article_id}
 						className="item"
-						onMouseEnter={() => {
-							setActiveId(article.article_id);
-						}}
-						onMouseLeave={() => {
-							setActiveId(null);
-						}}
+						onMouseEnter={() => setActiveId(article.article_id)}
+						onMouseLeave={() => setActiveId(null)}
 					>
 						<Link to={`/articles/${article.article_id}`} className="link">
 							<div>
@@ -45,11 +50,9 @@ export function Articles() {
 									className="news_image"
 								/>
 								<h3
-									style={{
-										color: activeId === article.article_id ? 'blue' : 'black',
-										textDecoration:
-											activeId === article.article_id ? 'underline' : 'none',
-									}}
+									className={
+										activeId === article.article_id ? 'active_link' : ''
+									}
 								>
 									{article.title}
 								</h3>
@@ -72,8 +75,8 @@ export function Articles() {
 							</div>
 						</Link>
 					</li>
-				);
-			})}
-		</ul>
+				))}
+			</ul>
+		</main>
 	);
 }

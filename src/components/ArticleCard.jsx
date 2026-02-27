@@ -25,7 +25,7 @@ export function ArticleCard() {
 				const body = await response.json();
 				setArticle(body.article);
 			} catch (err) {
-				setError('there was a problem loadin the article');
+				setError('there was a problem loading the article');
 			}
 		}
 		fetchArticle();
@@ -109,10 +109,13 @@ export function ArticleCard() {
 									</button>
 								</li>
 								<li>{a.votes + userVote}</li>
-								<li className="error_text">
-									{error ? 'There was a problem registering your vote' : ''}
-									<style></style>
-								</li>
+
+								{error && (
+									<li className="error_text">
+										There was a problem registering your vote
+									</li>
+								)}
+
 								<li>
 									<BiCommentDetail className="comment_icon" /> {a.comment_count}
 								</li>

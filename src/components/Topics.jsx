@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { Header } from './Header';
 
 export function Topics() {
 	const [topics, setTopics] = useState(null);
 	const [activeTopic, setActiveTopic] = useState(null);
+	const [error, setError] = useState(null);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		async function fetchTopics() {
@@ -21,39 +23,42 @@ export function Topics() {
 		return <p>Loading...</p>;
 	}
 
+	function handleNavigate(topic) {
+		navigate(`/articles/?topic=${topic.slug}`);
+	}
+
 	return (
 		<main className="main_page">
 			<Header />
 			<ul className="generic_list">
 				{topics.topics.map((topic) => {
 					return (
-						<div key={topic.slug}>
-							{' '}
-							<li
-								className="item"
-								onMouseEnter={() => {
-									setActiveTopic(topic.slug);
-								}}
-								onMouseLeave={() => {
-									setActiveTopic(null);
+						<li
+							key={topic.slug}
+							className="item"
+							onMouseEnter={() => {
+								setActiveTopic(topic.slug);
+							}}
+							onMouseLeave={() => {
+								setActiveTopic(null);
+							}}
+							onClick={() => handleNavigate(topic)}
+						>
+							<img
+								src={topic.img_url}
+								alt="topic picture"
+								className="news_image"
+							/>
+							<h3
+								style={{
+									color: activeTopic === topic.slug ? 'blue' : 'black',
+									textDecoration:
+										activeTopic === topic.slug ? 'underline' : 'none',
 								}}
 							>
-								<img
-									src={topic.img_url}
-									alt="topic picture"
-									className="news_image"
-								/>
-								<h3
-									style={{
-										color: activeTopic === topic.slug ? 'blue' : 'black',
-										textDecoration:
-											activeTopic === topic.slug ? 'underline' : 'none',
-									}}
-								>
-									{topic.slug}
-								</h3>
-							</li>
-						</div>
+								{topic.slug}
+							</h3>
+						</li>
 					);
 				})}
 			</ul>
