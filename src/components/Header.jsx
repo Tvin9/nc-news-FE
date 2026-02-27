@@ -11,10 +11,13 @@ export function Header() {
 				<h1>NC News</h1>
 				<div className="external_links">
 					<div className="icons">
-						<a href="www.linkedin.com/in/christopher-harrison-33841ba5">
+						<a
+							href="https://linkedin.com/in/christopher-harrison-33841ba5"
+							target="_blank"
+						>
 							<FaLinkedin />
 						</a>
-						<a href="https://github.com/Tvin9">
+						<a href="https://github.com/Tvin9" target="_blank">
 							<FaGithub />
 						</a>
 					</div>
