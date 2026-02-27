@@ -2,11 +2,15 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Header } from './Header';
 import { CommentCard } from './CommentCard';
-import { FaThumbsUp } from 'react-icons/fa';
-import { FaRegThumbsUp } from 'react-icons/fa';
-import { FaThumbsDown } from 'react-icons/fa';
-import { FaRegThumbsDown } from 'react-icons/fa';
+import {
+	FaThumbsUp,
+	FaRegThumbsUp,
+	FaThumbsDown,
+	FaRegThumbsDown,
+} from 'react-icons/fa';
 import { BiCommentDetail } from 'react-icons/bi';
+
+const ARTICLE_URL = 'https://nc-news-yyic.onrender.com/api/articles';
 
 export function ArticleCard() {
 	const [article, setArticle] = useState(null);
@@ -16,11 +20,13 @@ export function ArticleCard() {
 
 	useEffect(() => {
 		async function fetchArticle() {
-			const response = await fetch(
-				`https://nc-news-yyic.onrender.com/api/articles/${article_id}`,
-			);
-			const body = await response.json();
-			setArticle(body.article);
+			try {
+				const response = await fetch(`${ARTICLE_URL}/${article_id}`);
+				const body = await response.json();
+				setArticle(body.article);
+			} catch (err) {
+				setError('there was a problem loadin the article');
+			}
 		}
 		fetchArticle();
 	}, [article_id]);
@@ -37,14 +43,11 @@ export function ArticleCard() {
 			setUserVote(vote);
 			setError(null);
 
-			const response = await fetch(
-				`https://nc-news-yyic.onrender.com/api/articles/${id}`,
-				{
-					method: 'PATCH', //declare PATCH as it's not supported with fetch
-					headers: { 'Content-Type': 'application/json' }, //tells server what data to expect
-					body: JSON.stringify({ inc_votes: vote }), //turns the input object into a json package
-				},
-			);
+			const response = await fetch(`${ARTICLE_URL}/${id}`, {
+				method: 'PATCH', //declare PATCH as it's not supported with fetch
+				headers: { 'Content-Type': 'application/json' }, //tells server what data to expect
+				body: JSON.stringify({ inc_votes: vote }), //turns the input object into a json package
+			});
 			if (!response.ok) {
 				throw new Error('Vote failed!');
 			}
