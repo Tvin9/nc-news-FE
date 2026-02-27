@@ -10,9 +10,11 @@ export function NavBar() {
 				</li>
 			</Link>
 
-			<li>
-				<h3>Topics</h3>
-			</li>
+			<Link to="/topics" style={{ textDecoration: 'none', color: 'white' }}>
+				<li>
+					<h3>Topics</h3>
+				</li>
+			</Link>
 
 			<Link to={'/authors'} style={{ textDecoration: 'none', color: 'white' }}>
 				<li className="link">
