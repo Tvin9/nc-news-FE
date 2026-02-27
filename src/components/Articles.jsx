@@ -1,4 +1,3 @@
-// Articles.jsx
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams, useLocation } from 'react-router';
 import { FaRegThumbsUp, FaRegThumbsDown } from 'react-icons/fa';
@@ -36,7 +35,7 @@ export function Articles() {
 	return (
 		<main className="main_page">
 			<Header />
-			{topicLabel && <h2>Articles on {topicLabel}</h2>}
+			{topicLabel && <h2>Articles on {topicLabel}:</h2>}
 			<ul className="generic_list">
 				{articles.articles.map((article) => (
 					<li

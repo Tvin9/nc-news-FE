@@ -1,14 +1,16 @@
 import Box from '@mui/system/Box';
 import { NavBar } from './NavBar';
-import { FaLinkedin } from 'react-icons/fa';
-import { FaGithub } from 'react-icons/fa';
+
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { LoggedInUser } from './LoggedIn';
 
 export function Header() {
 	return (
 		<Box>
 			<div className="Header">
-				<h1>NC News</h1>
+				<div className="header_left">
+					<h1>NC News</h1>
+				</div>
 				<div className="external_links">
 					<div className="icons">
 						<a
