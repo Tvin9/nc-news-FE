@@ -18,13 +18,13 @@ export function Topics() {
 		}
 		fetchTopics();
 	}, []);
-
-	if (!topics) {
-		return <p>Loading...</p>;
-	}
+	if (error) return <p>{error}</p>;
+	if (!topics) return <p>Loading...</p>;
 
 	function handleNavigate(topic) {
-		navigate(`/articles/?topic=${topic.slug}`);
+		navigate(`/articles/?topic=${topic.slug}`, {
+			state: { topicLabel: topic.slug },
+		});
 	}
 
 	return (
