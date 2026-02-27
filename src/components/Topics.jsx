@@ -27,28 +27,33 @@ export function Topics() {
 			<ul className="generic_list">
 				{topics.topics.map((topic) => {
 					return (
-						<li
-							key={topic.slug}
-							className="item"
-							onMouseOver={() => {
-								setActiveTopic(topic.slug);
-							}}
-						>
-							<img
-								src={topic.img_url}
-								alt="topic picture"
-								className="news_image"
-							/>
-							<h3
-								style={{
-									color: activeTopic === topic.slug ? 'blue' : 'black',
-									textDecoration:
-										activeTopic === topic.slug ? 'underline' : 'none',
+						<div key={topic.slug}>
+							{' '}
+							<li
+								className="item"
+								onMouseEnter={() => {
+									setActiveTopic(topic.slug);
+								}}
+								onMouseLeave={() => {
+									setActiveTopic(null);
 								}}
 							>
-								{topic.slug}
-							</h3>
-						</li>
+								<img
+									src={topic.img_url}
+									alt="topic picture"
+									className="news_image"
+								/>
+								<h3
+									style={{
+										color: activeTopic === topic.slug ? 'blue' : 'black',
+										textDecoration:
+											activeTopic === topic.slug ? 'underline' : 'none',
+									}}
+								>
+									{topic.slug}
+								</h3>
+							</li>
+						</div>
 					);
 				})}
 			</ul>

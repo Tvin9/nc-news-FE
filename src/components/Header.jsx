@@ -10,12 +10,14 @@ export function Header() {
 			<div className="Header">
 				<h1>NC News</h1>
 				<div className="external_links">
-					<a href="www.linkedin.com/in/christopher-harrison-33841ba5">
-						<FaLinkedin />
-					</a>
-					<a href="https://github.com/Tvin9">
-						<FaGithub />
-					</a>
+					<div className="icons">
+						<a href="www.linkedin.com/in/christopher-harrison-33841ba5">
+							<FaLinkedin />
+						</a>
+						<a href="https://github.com/Tvin9">
+							<FaGithub />
+						</a>
+					</div>
 					<LoggedInUser />
 				</div>
 			</div>

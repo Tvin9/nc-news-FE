@@ -30,8 +30,11 @@ export function Articles() {
 					<li
 						key={article.article_id}
 						className="item"
-						onMouseOver={() => {
+						onMouseEnter={() => {
 							setActiveId(article.article_id);
+						}}
+						onMouseLeave={() => {
+							setActiveId(null);
 						}}
 					>
 						<Link to={`/articles/${article.article_id}`} className="link">
